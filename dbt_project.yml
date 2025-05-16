@@ -1,0 +1,30 @@
+name: "fabric_data_warehouse"
+
+config-version: 2
+version: "0.1"
+
+profile: "fabric_data_warehouse"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analysis"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_modules"
+  - "logs"
+
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
+models:
+  fabric_data_warehouse:
+    +incremental_strategy: "delete+insert"
+    marts:
+      materialized: table
+    intermediate:
+      materialized: view
+    staging:
+      materialized: view

@@ -1,0 +1,35 @@
+config:
+  partial_parse: true
+fabric_data_warehouse:
+  target: fabric-dev
+  outputs:
+    fabric-dev:
+      authentication: CLI
+      database: Warehouse
+      driver: "ODBC Driver 18 for SQL Server"
+      host: 22o6q757hn6etdueyzlyud7afu-zebiw5n74bpuhhwyou3fjkvq7y.datawarehouse.fabric.microsoft.com
+      schema: dev
+      threads: 4
+      type: fabric
+    fabric-pr:
+      authentication: ServicePrincipal
+      database: Warehouse
+      driver: "ODBC Driver 18 for SQL Server"
+      host: 22o6q757hn6etdueyzlyud7afu-zebiw5n74bpuhhwyou3fjkvq7y.datawarehouse.fabric.microsoft.com
+      schema: "pr_{{ var('schema_id') }}"
+      threads: 4
+      tenant_id: "{{ env_var('FABRIC_TENANT_ID') }}"
+      client_id: "{{ env_var('FABRIC_CLIENT_ID') }}"
+      client_secret: "{{ env_var('FABRIC_CLIENT_SECRET') }}"
+      type: fabric
+    fabric-prod:
+      authentication: ServicePrincipal
+      database: Warehouse
+      driver: "ODBC Driver 18 for SQL Server"
+      host: 22o6q757hn6etdueyzlyud7afu-zebiw5n74bpuhhwyou3fjkvq7y.datawarehouse.fabric.microsoft.com
+      schema: prod
+      threads: 4
+      tenant_id: "{{ env_var('FABRIC_TENANT_ID') }}"
+      client_id: "{{ env_var('FABRIC_CLIENT_ID') }}"
+      client_secret: "{{ env_var('FABRIC_CLIENT_SECRET') }}"
+      type: fabric
